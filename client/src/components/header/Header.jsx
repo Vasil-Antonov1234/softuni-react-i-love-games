@@ -6,15 +6,15 @@ export default function Header() {
             {/* <!-- Navigation --> */}
             <nav>
                 <Link className="home" to="/"> <img src="./images/logo.png" alt="logo" /> </Link>
-                <a href="#">Catalog</a>
+                <Link to="/games">Catalog</Link>
                 {/* <!-- Logged-in users --> */}
                 <div id="user">
-                    <a href="#">Add Game</a>
-                    <a href="#">Logout</a>
+                    <Link to="#">Add Game</Link>
+                    <Link to="#">Logout</Link>
                 </div>
                 {/* <!-- Guest users --> */}
                 <div id="guest">
-                    <a href="#">Login</a>
+                    <Link to="#">Login</Link>
                     <Link to="/register">Register</Link>
                 </div>
             </nav>
