@@ -1,47 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Game from "../game/Game.jsx";
+
+const BASE_URL = "http://localhost:3030/jsonstore/games";
 
 export default function Games() {
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const respons = await fetch(BASE_URL);
+                const result = await respons.json();
+
+                const games = Object.values(result);
+
+                setGames(games);
+            } catch (error) {
+                alert(error.message);
+            };
+        })();
+    }, [])
+
     return (
         <section id="catalog-page">
             <h1>Catalog</h1>
             {/* <!-- Display div: with information about every game (if any) --> */}
             <div className="catalog-container">
 
-                <div className="game">
-                    <img src="./images/witcher.png" alt="The Witcher 3" />
-                    <div className="details-overlay">
-                        <p className="name">The Witcher 3</p>
-                        <p className="genre">Open World</p>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
-                </div>
-
-                <div className="game">
-                    <img src="./images/elden ring.png" alt="Elden Ring" />
-                    <div className="details-overlay">
-                        <p className="name">Elden Ring</p>
-                        <p className="genre">Action RPG</p>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
-                </div>
-
-                <div className="game">
-                    <img src="./images/minecraft.png" alt="Minecraft" />
-                    <div className="details-overlay">
-                        <p className="name">Minecraft</p>
-                        <p className="genre">Sandbox</p>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
-                </div>
-
-                <div className="game">
-                    <img src="./images/cyberpunk.png" alt="Cyberpunk 2077" />
-                    <div className="details-overlay">
-                        <p className="name">Cyberpunk 2077</p>
-                        <p className="genre">Action RPG</p>
-                        <Link to="#" className="details-button">Details</Link>
-                    </div>
-                </div>
+                {games.map((game) => <Game key={game._id} {...game} />)}
 
             </div>
             {/* <!-- Display paragraph: If there is no games  --> */}
