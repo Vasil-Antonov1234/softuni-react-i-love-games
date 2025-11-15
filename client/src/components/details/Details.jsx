@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import Games, { BASE_URL } from "../games/Games.jsx";
+import { BASE_URL } from "../games/Games.jsx";
 
 export default function Details() {
     const [game, setGame] = useState({})
