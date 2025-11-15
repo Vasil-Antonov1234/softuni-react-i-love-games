@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
-import { BASE_URL } from "../games/Games.jsx";
+import { Link, useNavigate, useParams } from "react-router";
+import Games, { BASE_URL } from "../games/Games.jsx";
 
 export default function Details() {
     const [game, setGame] = useState({})
-
     const { gameId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -21,6 +21,24 @@ export default function Details() {
         })()
 
     }, [gameId]);
+
+    async function deleteGameHandler(gameId) {
+
+        const isConfirm = confirm(`Are you shore you want to delete ${game.title} from catalog?`)
+
+        if (isConfirm) {
+
+            try {
+                await fetch(`${BASE_URL}/${gameId}`, {
+                    method: "DELETE"
+                });
+
+                navigate("/games");
+            } catch (error) {
+                alert(error.message);
+            };
+        }
+    };
 
     return (
         <section id="game-details">
@@ -60,7 +78,8 @@ export default function Details() {
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
                     <Link to="#" className="button">Edit</Link>
-                    <Link to="#" className="button">Delete</Link>
+                    {/* <Link to={`games/${gameId}/delete`} className="button">Delete</Link> */}
+                    <button className="button" onClick={() => deleteGameHandler(gameId)}>Delete</button>
                 </div>
 
                 <div className="details-comments">

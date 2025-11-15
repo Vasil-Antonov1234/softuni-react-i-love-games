@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import Game from "../game/Game.jsx";
 
 export const BASE_URL = "http://localhost:3030/jsonstore/games";
