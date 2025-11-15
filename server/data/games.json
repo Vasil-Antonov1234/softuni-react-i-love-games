@@ -38,5 +38,15 @@
         "imageUrl": "/images/cyberpunk.png",
         "summary": "An open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality.",
         "_createdOn": 1607558400000
+    },
+    "8f8f63c2-b74d-4ae1-9ee5-053acdfa4fad": {
+        "_id": "8f8f63c2-b74d-4ae1-9ee5-053acdfa4fad",
+        "title": "Hearthstone",
+        "genre": " Card game",
+        "players": 3800000,
+        "date": "2014-05-12",
+        "imageUrl": "https://d39zum0jwvcigt.cloudfront.net/_next/static/images/default-4fff3c606c794dc03a915b9071f562d3.jpg",
+        "summary": "Hearthstone is a free-to-play, digital collectible card game set in the Warcraft universe where two players use decks of cards to reduce their opponent's hero's health to zero. Players choose one of eleven classes, each with unique cards and abilities, and build a 30-card deck to battle. Gameplay involves strategically playing minions, spells, and weapons, managing mana resources, and using a unique Hero Power each turn. ",
+        "_createdOn": 1763227871855
     }
 }
