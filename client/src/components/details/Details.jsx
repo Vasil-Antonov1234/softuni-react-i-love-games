@@ -22,7 +22,7 @@ export default function Details() {
 
     }, [gameId]);
 
-    async function deleteGameHandler(gameId) {
+    async function deleteGameHandler() {
 
         const isConfirm = confirm(`Are you shore you want to delete ${game.title} from catalog?`)
 
@@ -79,7 +79,7 @@ export default function Details() {
                 <div className="buttons">
                     <Link to="#" className="button">Edit</Link>
                     {/* <Link to={`games/${gameId}/delete`} className="button">Delete</Link> */}
-                    <button className="button" onClick={() => deleteGameHandler(gameId)}>Delete</button>
+                    <button className="button" onClick={deleteGameHandler}>Delete</button>
                 </div>
 
                 <div className="details-comments">
