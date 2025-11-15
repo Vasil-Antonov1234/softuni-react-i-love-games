@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../games/Games.jsx";
+import request from "../../utils/request.js";
 
 export default function Create() {
 
@@ -13,15 +14,18 @@ export default function Create() {
         newGameData._createdOn = Date.now();
 
         try {
-            const response = await fetch(BASE_URL, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(newGameData)
-            });
+            // const response = await fetch(BASE_URL, {
+            //     method: "POST",
+            //     headers: {
+            //         "content-type": "application/json"
+            //     },
+            //     body: JSON.stringify(newGameData)
+            // });
 
-            const result = await response.json();
+            // const result = await response.json();
+
+            const result = await request(BASE_URL, "POST", {"content-type": "application/json"}, newGameData);
+
             console.log(result);
 
             navigate("/games");

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Game from "../game/Game.jsx";
+import request from "../../utils/request.js";
 
 export const BASE_URL = "http://localhost:3030/jsonstore/games";
 
@@ -9,11 +10,12 @@ export default function Games() {
     useEffect(() => {
         (async () => {
             try {
-                const respons = await fetch(BASE_URL);
-                const result = await respons.json();
+                // const respons = await fetch(BASE_URL);
+                // const result = await respons.json();
+                const result = await request(BASE_URL)
 
                 const games = Object.entries(result);
-
+                
                 setGames(games);
             } catch (error) {
                 alert(error.message);

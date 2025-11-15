@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { BASE_URL } from "../games/Games.jsx";
+import request from "../../utils/request.js";
 
 export default function Details() {
     const [game, setGame] = useState({})
@@ -11,8 +12,10 @@ export default function Details() {
 
         (async () => {
             try {
-                const response = await fetch(`${BASE_URL}/${gameId}`);
-                const result = await response.json();
+                // const response = await fetch(`${BASE_URL}/${gameId}`);
+                // const result = await response.json();
+
+                const result = await request(`${BASE_URL}/${gameId}`)
 
                 setGame(result);
             } catch (error) {
@@ -29,9 +32,11 @@ export default function Details() {
         if (isConfirm) {
 
             try {
-                await fetch(`${BASE_URL}/${gameId}`, {
-                    method: "DELETE"
-                });
+                // await fetch(`${BASE_URL}/${gameId}`, {
+                //     method: "DELETE"
+                // });
+                
+                await request(`${BASE_URL}/${gameId}`, "DELETE");
 
                 navigate("/games");
             } catch (error) {
