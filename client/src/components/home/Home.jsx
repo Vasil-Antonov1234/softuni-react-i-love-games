@@ -12,12 +12,17 @@ export default function Home() {
             // const response = await fetch(BASE_URL);
             // const result = await response.json();
 
-            const result = await request(BASE_URL);
+            try {
+                const result = await request(BASE_URL);
 
-            const games = Object.entries(result);
-            const sortedGames = games.sort((a, b) => b[1]._createdOn - a[1]._createdOn).slice(0, 3)
+                const games = Object.entries(result);
+                const sortedGames = games.sort((a, b) => b[1]._createdOn - a[1]._createdOn).slice(0, 3)
 
-            setLatestGames(sortedGames);
+                setLatestGames(sortedGames);
+            } catch (error) {
+                alert(error.message);
+            };
+
         })();
 
     }, []);
@@ -35,7 +40,7 @@ export default function Home() {
                 <h1>Latest Games</h1>
                 <div id="latest-wrap">
                     <div className="home-container">
-                        
+
                         {latestGames.length ? latestGames.map((game) => <Game key={game[0]} {...game[1]} />) : <p className="no-articles">No games yet</p>}
 
                     </div>

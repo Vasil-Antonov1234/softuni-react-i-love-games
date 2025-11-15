@@ -1,13 +1,17 @@
-export default async function request(url, method = "GET", headersData, body) {
+export default async function request(url, method = "GET", headers, body) {
     
-    const headers = {method: method};
+    const options = {method: method};
 
-    if (headersData) {
-        headers.headers = headersData;
-        headers.body = JSON.stringify(body);
+    if (headers) {
+        options.headers = headers;
+        options.body = JSON.stringify(body);
     }
     
-    const response = await fetch(url, headers);
+    const response = await fetch(url, options);
+
+    if (!response.ok || response.status === 204) {
+        throw {message: response.statusText}
+    };
 
     const result = await response.json();
 
