@@ -1,4 +1,6 @@
-export default function Register() {
+export default function Register({
+    onRegister
+}) {
 
     function registerSubmit(formData) {
         const email = formData.get("email");
@@ -13,7 +15,7 @@ export default function Register() {
             alert("Passwords missmatch!")
         };
 
-        // TODO Register user
+        onRegister(email);
 
         // Redirect to home page
     }
