@@ -8,6 +8,7 @@ import Details from "./details/Details.jsx"
 import Create from "./create/Create.jsx"
 import { useState } from "react"
 import Login from "./login/Login.jsx"
+import Logout from "./logout/Logout.jsx"
 
 function App() {
     const [user, setUser] = useState(null);
@@ -38,7 +39,7 @@ function App() {
             })
 
         } else {
-            setUser(user.email = "");
+            setUser(null);
         }
     }
 
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/register" element={<Register onRegister={userHandler} />} />
                 <Route path="games/create" element={<Create />} />
                 <Route path="/login" element={<Login onLogin={userHandler} />} />
+                <Route path="logout" element={<Logout onLogout={userHandler}/>} />
             </Routes>
 
 
