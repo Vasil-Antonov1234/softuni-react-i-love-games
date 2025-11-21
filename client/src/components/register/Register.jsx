@@ -1,7 +1,26 @@
 export default function Register() {
+
+    function registerSubmit(formData) {
+        const email = formData.get("email");
+        const password = formData.get("password");
+        const rePassword = formData.get("confirm-password");
+
+        if (!email || !password) {
+            alert("Email and Password are requaried!")
+        };
+
+        if (password !== rePassword) {
+            alert("Passwords missmatch!")
+        };
+
+        // TODO Register user
+
+        // Redirect to home page
+    }
+
     return (
         <section id="register-page" className="content auth">
-            <form id="register">
+            <form id="register" action={registerSubmit}>
                 <div className="container">
                     <div className="brand-logo"></div>
                     <h1>Register</h1>
