@@ -12,16 +12,22 @@ export default function Register({
         const rePassword = formData.get("confirm-password");
 
         if (!email || !password) {
-            alert("Email and Password are requaried!")
+            return alert("Email and Password are requaried!")
         };
 
         if (password !== rePassword) {
-            alert("Passwords missmatch!")
+            return alert("Passwords missmatch!")
         };
 
-        onRegister(email);
+        const isRegister = true;
 
-        navigate("/")
+        try {
+            onRegister(email, password, isRegister);
+
+            navigate("/")
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     return (

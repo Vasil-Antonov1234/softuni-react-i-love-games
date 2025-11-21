@@ -19,9 +19,14 @@ export default function Header({
                     <Link to="/login">Login</Link>
                     <Link to="/register">Register</Link>
                 </div> : ""}
+
+                {/* <div id="guest">
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                </div> */}
                 
             </nav>
-            {user && <p>Welcome {user.email}!</p>}
+            {user?.email && <p>Welcome {user.email}!</p>}
         </header>
     );
 }

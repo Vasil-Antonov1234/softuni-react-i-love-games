@@ -11,14 +11,34 @@ import Login from "./login/Login.jsx"
 
 function App() {
     const [user, setUser] = useState(null);
+    const [registredUsers, setRegistredUsers] = useState([])
 
-    function userHandler(email) {
-        if (email) {
+    function userHandler(email, password, isRegister) {
+        if (email && isRegister) {
+            
+            if (registredUsers.some(user => user.email === email)) {
+                throw new Error("This email is already in use!")
+            }
+            
             setUser({
                 email
             })
+
+            setRegistredUsers((state) => [...state, { email, password }]);
+        } else if (email && !isRegister) {
+
+            const logUser = registredUsers.find((user) => user.email === email && user.password === password)
+
+            if (!logUser) {
+                throw new Error ("Invalid email or password!");
+            }
+
+            setUser({
+                email
+            })
+
         } else {
-            setUser(null);
+            setUser(user.email = "");
         }
     }
 
