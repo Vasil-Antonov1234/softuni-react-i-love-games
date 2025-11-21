@@ -7,6 +7,7 @@ import Games from "./games/Games.jsx"
 import Details from "./details/Details.jsx"
 import Create from "./create/Create.jsx"
 import { useState } from "react"
+import Login from "./login/Login.jsx"
 
 function App() {
     const [user, setUser] = useState(null);
@@ -30,8 +31,9 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/games" element={<Games />} />
                 <Route path="/games/:gameId/details" element={<Details />} />
-                <Route path="/register" element={<Register onRegister={userHandler} user={user} />} />
+                <Route path="/register" element={<Register onRegister={userHandler} />} />
                 <Route path="games/create" element={<Create />} />
+                <Route path="/login" element={<Login onLogin={userHandler} />} />
             </Routes>
 
 
