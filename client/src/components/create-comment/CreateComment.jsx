@@ -16,7 +16,7 @@ export default function CreateComment({
 
         await request("/comments", "POST", {"content-type": "application/json"},
             {
-            author: user?.email,
+            author: user.email,
             message: comment,
             gameId
         })
