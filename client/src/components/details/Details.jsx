@@ -10,6 +10,7 @@ export default function Details({
     const [game, setGame] = useState({})
     const { gameId } = useParams();
     const navigate = useNavigate();
+    const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
 
@@ -27,6 +28,10 @@ export default function Details({
         })()
 
     }, [gameId]);
+
+    function refreshHandler() {
+        setRefresh(state => !state);
+    };
 
     async function deleteGameHandler() {
 
@@ -90,12 +95,12 @@ export default function Details({
                     <button className="button" onClick={deleteGameHandler}>Delete</button>
                 </div>
 
-                <DetailsComments />
+                <DetailsComments refresh={refresh}/>
 
             </div>
             
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            { user && <CreateComment user={user} />}
+            { user && <CreateComment user={user} onCreate={setRefresh} />}
 
         </section>
     );
