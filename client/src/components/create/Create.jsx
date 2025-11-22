@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { BASE_URL } from "../games/Games.jsx";
 import request from "../../utils/request.js";
 
 export default function Create() {
@@ -24,7 +23,7 @@ export default function Create() {
 
             // const result = await response.json();
 
-            const result = await request(BASE_URL, "POST", {"content-type": "application/json"}, newGameData);
+            const result = await request("", "POST", {"content-type": "application/json"}, newGameData);
 
             console.log(result);
 

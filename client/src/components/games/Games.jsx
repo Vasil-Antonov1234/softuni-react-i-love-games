@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Game from "../game/Game.jsx";
 import request from "../../utils/request.js";
 
-export const BASE_URL = "http://localhost:3030/jsonstore/games";
+// export const BASE_URL = "http://localhost:3030/jsonstore/games";
 
 export default function Games() {
     const [games, setGames] = useState([]);
@@ -12,7 +12,7 @@ export default function Games() {
             try {
                 // const respons = await fetch(BASE_URL);
                 // const result = await respons.json();
-                const result = await request(BASE_URL)
+                const result = await request("")
 
                 const games = Object.entries(result);
                 

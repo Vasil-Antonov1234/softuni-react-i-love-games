@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import request from "../../utils/request.js";
-import { BASE_URL } from "../games/Games.jsx";
 
 export default function Edit() {
 
@@ -30,7 +29,7 @@ export default function Edit() {
         (async function getGame() {
 
             try {
-                const game = await request(`${BASE_URL}/${gameId}`);
+                const game = await request(`/${gameId}`);
 
                 setVaslues(game);
             } catch (error) {
@@ -39,9 +38,28 @@ export default function Edit() {
         })();
     }, [gameId])
 
+    const navigate = useNavigate();
+
+    async function editGameHandler(formData) {
+
+        const userData = Object.fromEntries(formData);
+        const data = {...userData, 
+                        _id: gameId, 
+                        _createdOn: values._createdOn
+                    };
+
+        try {
+            await request(`/${gameId}`, "PUT", { "content-type": "application/json" }, data);
+
+            navigate("/games");
+        } catch (error) {
+            alert(error.message)
+        }
+    };
+
     return (
         <section id="edit-page">
-            <form id="add-new-game">
+            <form id="add-new-game" action={editGameHandler}>
                 <div className="container">
 
                     <h1>Edit Game</h1>

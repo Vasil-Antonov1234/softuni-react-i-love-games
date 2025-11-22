@@ -1,3 +1,5 @@
+export const BASE_URL = "http://localhost:3030/jsonstore/games";
+
 export default async function request(url, method = "GET", headers, body) {
     
     const options = {method: method};
@@ -7,7 +9,7 @@ export default async function request(url, method = "GET", headers, body) {
         options.body = JSON.stringify(body);
     }
     
-    const response = await fetch(url, options);
+    const response = await fetch(`${BASE_URL}${url}`, options);
 
     if (!response.ok || response.status === 204) {
         throw {message: response.statusText}
