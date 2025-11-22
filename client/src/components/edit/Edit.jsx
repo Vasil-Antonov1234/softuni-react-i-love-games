@@ -40,18 +40,12 @@ export default function Edit() {
 
     const navigate = useNavigate();
 
-    async function editGameHandler(formData) {
-
-        const userData = Object.fromEntries(formData);
-        const data = {...userData, 
-                        _id: gameId, 
-                        _createdOn: values._createdOn
-                    };
+    async function editGameHandler() {
 
         try {
-            await request(`/${gameId}`, "PUT", { "content-type": "application/json" }, data);
+            await request(`/${gameId}`, "PUT", { "content-type": "application/json" }, values);
 
-            navigate("/games");
+            navigate(`/games/${gameId}/details`);
         } catch (error) {
             alert(error.message)
         }
