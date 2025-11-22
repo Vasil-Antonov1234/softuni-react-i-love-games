@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import request from "../../utils/request.js";
+import { BASE_URL } from "../games/Games.jsx";
 
 export default function Edit() {
+    
+    const { gameId } = useParams();
+
     const initialValues = {
         title: "",
         genre: "",
@@ -10,14 +16,28 @@ export default function Edit() {
         summary: ""
     }
 
-    const [values, setVasluse] = useState(initialValues)
+    const [values, setVaslues] = useState(initialValues)
 
     function changeHandler(event) {
-        setVasluse(state => ({
+        setVaslues(state => ({
             ...state,
             [event.target.name]: event.target.value
         }))
     }
+
+    useEffect(() => {
+        
+        (async function getGame() {
+            
+            const game = await request(`${BASE_URL}/${gameId}`);
+        
+            try {
+                setVaslues(game);
+            } catch (error) {
+                alert(error.message);
+            };
+        })();
+    }, [gameId])
 
     return (
         <section id="edit-page">
