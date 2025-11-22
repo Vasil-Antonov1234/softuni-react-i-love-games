@@ -12,7 +12,7 @@ export default function Home() {
             // const result = await response.json();
 
             try {
-                const result = await request("");
+                const result = await request("/games");
 
                 const games = Object.entries(result);
                 const sortedGames = games.sort((a, b) => b[1]._createdOn - a[1]._createdOn).slice(0, 3)

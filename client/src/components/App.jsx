@@ -52,11 +52,11 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/games" element={<Games />} />
-                <Route path="/games/:gameId/details" element={<Details />} />
+                <Route path="/games/:gameId/details" element={<Details user={user} />} />
                 <Route path="/register" element={<Register onRegister={userHandler} />} />
                 <Route path="/games/create" element={<Create />} />
                 <Route path="/login" element={<Login onLogin={userHandler} />} />
-                <Route path="/logout" element={<Logout onLogout={userHandler}/>} />
+                <Route path="/logout" element={<Logout onLogout={userHandler} />} />
                 <Route path="/games/:gameId/edit" element={<Edit />} />
             </Routes>
 

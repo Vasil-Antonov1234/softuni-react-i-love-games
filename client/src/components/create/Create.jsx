@@ -23,7 +23,7 @@ export default function Create() {
 
             // const result = await response.json();
 
-            const result = await request("", "POST", {"content-type": "application/json"}, newGameData);
+            const result = await request("/games", "POST", {"content-type": "application/json"}, newGameData);
 
             console.log(result);
 

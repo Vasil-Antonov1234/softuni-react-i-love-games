@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3030/jsonstore/games";
+export const BASE_URL = "http://localhost:3030/jsonstore";
 
 export default async function request(url, method = "GET", headers, body) {
     

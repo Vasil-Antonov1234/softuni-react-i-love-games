@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import request from "../../utils/request.js";
+import CreateComment from "../create-comment/CreateComment.jsx";
+import DetailsComments from "../details-comments/DetailsComments.jsx";
 
-export default function Details() {
+export default function Details({
+    user
+}) {
     const [game, setGame] = useState({})
     const { gameId } = useParams();
     const navigate = useNavigate();
@@ -14,7 +18,7 @@ export default function Details() {
                 // const response = await fetch(`${BASE_URL}/${gameId}`);
                 // const result = await response.json();
 
-                const result = await request(`/${gameId}`)
+                const result = await request(`/games/${gameId}`)
 
                 setGame(result);
             } catch (error) {
@@ -35,7 +39,7 @@ export default function Details() {
                 //     method: "DELETE"
                 // });
                 
-                await request(`/${gameId}`, "DELETE");
+                await request(`/games/${gameId}`, "DELETE");
 
                 navigate("/games");
             } catch (error) {
@@ -86,29 +90,13 @@ export default function Details() {
                     <button className="button" onClick={deleteGameHandler}>Delete</button>
                 </div>
 
-                <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        <li className="comment">
-                            <p>Content: A masterpiece of world design, though the boss fights are brutal.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: Truly feels like a next-gen evolution of the Souls formula!</p>
-                        </li>
-                    </ul>
-                    {/* <!-- Display paragraph: If there are no games in the database --> */}
-                    {/* <!-- <p className="no-comment">No comments.</p> --> */}
-                </div>
+                <DetailsComments />
 
             </div>
+            
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea name="comment" placeholder="Comment......"></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment" />
-                </form>
-            </article>
+            <CreateComment user={user} />
+
         </section>
     );
 }

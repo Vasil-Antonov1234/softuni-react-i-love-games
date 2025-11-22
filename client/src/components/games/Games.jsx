@@ -12,7 +12,7 @@ export default function Games() {
             try {
                 // const respons = await fetch(BASE_URL);
                 // const result = await respons.json();
-                const result = await request("")
+                const result = await request("/games")
 
                 const games = Object.entries(result);
                 

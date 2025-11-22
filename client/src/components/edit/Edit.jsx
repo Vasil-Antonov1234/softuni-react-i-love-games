@@ -29,7 +29,7 @@ export default function Edit() {
         (async function getGame() {
 
             try {
-                const game = await request(`/${gameId}`);
+                const game = await request(`/games/${gameId}`);
 
                 setVaslues(game);
             } catch (error) {
@@ -43,13 +43,13 @@ export default function Edit() {
     async function editGameHandler() {
 
         try {
-            await request(`/${gameId}`, "PUT", { "content-type": "application/json" }, values);
+            await request(`/games/${gameId}`, "PUT", { "content-type": "application/json" }, values);
 
             navigate(`/games/${gameId}/details`);
         } catch (error) {
             alert(error.message)
         }
-    };
+    };``
 
     return (
         <section id="edit-page">
